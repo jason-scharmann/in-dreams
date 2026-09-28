@@ -9,7 +9,7 @@ topEnvironment[\inDreams][\recording][\stop].();
 (
 var project;
 project = topEnvironment[\inDreams];
-project[\recording][\full].( "in-dreams-full-chip.wav");
+project[\recording][\full].( "in-dreams-full.wav");
 )
 // Full Wet-Only Recording ------------
 (
