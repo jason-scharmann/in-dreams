@@ -63,6 +63,9 @@ samplerFactory.(
   sampleTools
 );
 
+(root +/+ "synths/chip-lead.scd").load;
+(root +/+ "synths/chip-bass.scd").load;
+(root +/+ "synths/chip-harmony.scd").load;
 
 (root +/+ "synths/reverb.scd").load;
 )

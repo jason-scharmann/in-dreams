@@ -23,10 +23,19 @@ project = (
   samples: (),
   samplers: (),
   realizations: (),
-  ensemble: (
-    melody: \vscoFlute,
-    bass: \vscoCello,
-    harmony: \vscoHarp
+  // ensemble: \vsco,
+  ensemble: \chip,
+  ensembles: (
+    vsco: (
+      melody: \vscoFlute,
+      bass: \vscoCello,
+      harmony: \vscoHarp
+    ),
+    chip: (
+      melody: \chipLead,
+      bass: \chipBass,
+      harmony: \chipHarmony
+    )
   ),
   melody: (),
   bass: (),

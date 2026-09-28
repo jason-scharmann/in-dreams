@@ -44,4 +44,34 @@ factory.(
   project[\groups][\sources],
   0.2
 );
+
+factory =
+    (root +/+ "realizations/synth.scd").load;
+
+project[\realizations][\chipLead] =
+    factory.(
+        project[\synths][\chipLead],
+        project[\buses][\mix],
+        project[\groups][\sources],
+        0.10,
+        0.85
+    );
+
+project[\realizations][\chipBass] =
+    factory.(
+        project[\synths][\chipBass],
+        project[\buses][\mix],
+        project[\groups][\sources],
+        0.12,
+        0.95
+    );
+
+project[\realizations][\chipHarmony] =
+    factory.(
+        project[\synths][\chipHarmony],
+        project[\buses][\mix],
+        project[\groups][\sources],
+        0.04,
+        0.80
+    );
 )

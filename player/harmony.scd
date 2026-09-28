@@ -1,13 +1,16 @@
 (
-var project, source, realize;
+var project, source, ensemble, realize;
 
 project = topEnvironment[\inDreams];
 
 source =
   project[\utils][\patterns][\part].(project[\harmony]);
 
+ensemble =
+  project[\ensembles][project[\ensemble]];
+
 realize =
-  project[\realizations][project[\ensemble][\harmony]];
+  project[\realizations][ensemble[\harmony]];
 
 project[\player][\harmony] = source.collect(realize);
 )
