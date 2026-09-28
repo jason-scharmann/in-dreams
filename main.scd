@@ -45,6 +45,11 @@ project = (
   buses: (),
   groups: (),
   effects: (),
+  master: (
+    gainDb: 11,
+    ceiling: 0.84,
+    node: nil
+  ),
   recording: (),
 
 );
@@ -52,15 +57,13 @@ project = (
 topEnvironment[\inDreams] = project;
 
 File.mkdir(
-    project[\paths][\recordings]
+  project[\paths][\recordings]
 );
 
 project[\cleanup] = {
-  var stream;
-  var sourceGroup;
-  var effectsGroup;
-  var mixBus;
-  var clock;
+  var stream, sourceGroup, effectsGroup;
+  var mixBus, clock, masterGroup;
+
 
   if(project[\recording][\stop].notNil) {
     project[\recording][\stop].();
@@ -82,6 +85,12 @@ project[\cleanup] = {
   };
 
   if(s.serverRunning) {
+    masterGroup = project[\groups][\master];
+
+    if(masterGroup.notNil) {
+      masterGroup.free;
+    };
+
     effectsGroup = project[\groups][\effects];
 
     if(effectsGroup.notNil) {
@@ -133,6 +142,18 @@ s.waitForBoot {
         \mix, 0.15,
         \room, 0.6,
         \damp, 0.5
+      ]
+    );
+    project[\groups][\master] =
+    Group.after(project[\groups][\effects]);
+
+    project[\master][\node] = Synth.head(
+      project[\groups][\master],
+      project[\synths][\master],
+      [
+        \out, 0,
+        \gainDb, project[\master][\gainDb],
+        \ceiling, project[\master][\ceiling]
       ]
     );
     s.sync;

@@ -1,6 +1,6 @@
 {
   |synth, sampler, outBus, group,
-  amp = 0.6, legato = 0.9|
+  amp = 0.5, legato = 0.9|
 
   { |event|
     var out, sample;

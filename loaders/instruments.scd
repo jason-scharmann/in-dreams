@@ -68,4 +68,5 @@ samplerFactory.(
 (root +/+ "synths/chip-harmony.scd").load;
 
 (root +/+ "synths/reverb.scd").load;
+(root +/+ "synths/master.scd").load;
 )
