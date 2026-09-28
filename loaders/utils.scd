@@ -1,9 +1,11 @@
 (
-var root;
-root = topEnvironment[\inDreams][\paths][\root];
+var project, root;
+project = topEnvironment[\inDreams];
+root = project[\paths][\root];
+
+project[\utils][\sample] = (root +/+ "utils/sample.scd").load;
 
 [
-  "utils/sample.scd",
   "utils/composition.scd",
   "utils/pattern.scd"
 ].do { |file|
