@@ -1,0 +1,11 @@
+# Generated project output
+/output/
+# Machine-local configuration
+/config.local.scd
+# Personal scratch work
+/scratch.scd
+# Editor / OS temporary files
+*.swp
+*.swo
+*~
+.DS_Store
