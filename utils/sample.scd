@@ -1,6 +1,6 @@
 (
 var analyzeData, analyzeBuffer, measure, measureSet;
-var nearest, resolveMidi;
+var nearest, resolveMidi, loadCatalog;
 
 analyzeData = { |data, targetDb, targetPeakDb|
   var peak, rms, rmsGain, peakGain, gain;
@@ -42,19 +42,19 @@ measure = {
   |sample, targetDb = -20, targetPeakDb = -6|
 
   analyzeBuffer.( sample[\buffer], targetDb, targetPeakDb,
-    { |result|
-      "% peak: % dB   rms: % dB   rmsGain: %   peakGain: %   gain: %"
-      .format(
-        sample[\file],
-        result[\peakDb].round(0.01),
-        result[\rmsDb].round(0.01),
-        result[\rmsGain].round(0.01),
-        result[\peakGain].round(0.01),
-        result[\gain].round(0.01)
-      )
-      .postln;
-    }
-  );
+  { |result|
+    "% peak: % dB   rms: % dB   rmsGain: %   peakGain: %   gain: %"
+    .format(
+      sample[\file],
+      result[\peakDb].round(0.01),
+      result[\rmsDb].round(0.01),
+      result[\rmsGain].round(0.01),
+      result[\peakGain].round(0.01),
+      result[\gain].round(0.01)
+    )
+    .postln;
+  }
+);
 };
 
 
@@ -108,6 +108,38 @@ resolveMidi = { |samples, midi|
   )
 };
 
+loadCatalog = {
+  |catalog, rootPath, server|
+
+  var loaded;
+
+  loaded = ();
+
+  catalog.keysValuesDo { |setName, set|
+    var directory;
+
+    directory =
+    rootPath +/+ set[\directory];
+
+    loaded[setName] =
+    set[\samples].collect { |sample|
+      var runtimeSample;
+
+      runtimeSample = sample.copy;
+
+      runtimeSample[\buffer] =
+      Buffer.read(
+        server,
+        directory +/+ sample[\file]
+      );
+
+      runtimeSample
+    };
+  };
+
+  loaded
+};
+
 
 // The value returned when this file is loaded.
 (
@@ -117,6 +149,7 @@ measure: measure,
 measureSet: measureSet,
 
 nearest: nearest,
-resolveMidi: resolveMidi
+resolveMidi: resolveMidi,
+loadCatalog: loadCatalog
 )
 )
