@@ -1,13 +1,11 @@
 (
-var project, sampleTools;
+{ |samples, sampleTools|
 
-project = topEnvironment[\inDreams];
-sampleTools = project[\utils][\sample];
-
-project[\samplers][\cello] = { |midi|
+  { |midi|
     sampleTools[\resolveMidi].(
-        project[\samples][\cello][\susvib],
-        midi
+      samples[\susvib],
+      midi
     )
-};
+  }
+}
 )
