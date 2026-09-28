@@ -8,7 +8,7 @@ project[\score][\partOrder].do { |partName|
   var realizationName;
   var realize;
 
-  source = project[\utils][\patterns][\part].(project[partName]);
+  source = Pseq(project[\score][\parts][partName], 1);
   realizationName = ensemble[partName];
 
   if(realizationName.isNil) {

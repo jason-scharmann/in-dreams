@@ -21,6 +21,11 @@ project[\score][\partOrder] = [
     \bass,
     \harmony
 ];
-
+project[\score][\form] = [
+  \first,
+  \second
+];
+project[\score][\parts] = ();
 project [\utils][\composition][\validateAll].();
+project [\utils][\composition][\normalizeAll].();
 )
