@@ -1,34 +1,13 @@
 (
-var project, source;
+var project, source, realize;
+
 project = topEnvironment[\inDreams];
-source = project[\utils][\patterns][\part].(project[\harmony]);
 
-project[\player][\harmony] = source.collect { |event|
-  var out, samples;
-  out = event.copy;
+source =
+  project[\utils][\patterns][\part].(project[\harmony]);
 
-  out[\instrument] = project[\synths][\harp];
-  out[\out] = project[\buses][\mix];
-  out[\group] = project[\groups][\sources];
-  out[\amp] = 0.2;
+realize =
+  project[\realizations][project[\ensemble][\harmony]];
 
-  if(out[\midinote].isRest.not) {
-    samples = out[\midinote].collect { |midi|
-      project[\samplers][\harp].(midi)
-    };
-
-    out[\buf] = samples.collect { |sample|
-      sample[\buf]
-    };
-
-    out[\rate] = samples.collect { |sample|
-      sample[\rate]
-    };
-
-    out[\sampleGain] = samples.collect { |sample|
-      sample[\sampleGain]
-    };
-  };
-  out
-};
+project[\player][\harmony] = source.collect(realize);
 )

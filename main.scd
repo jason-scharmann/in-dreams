@@ -22,6 +22,12 @@ project = (
   synths: (),
   samples: (),
   samplers: (),
+  realizations: (),
+  ensemble: (
+    melody: \vscoFlute,
+    bass: \vscoCello,
+    harmony: \vscoHarp
+  ),
   melody: (),
   bass: (),
   harmony: (),
@@ -31,6 +37,7 @@ project = (
   groups: (),
   effects: (),
   recording: (),
+
 );
 
 topEnvironment[\inDreams] = project;
@@ -120,6 +127,7 @@ s.waitForBoot {
       ]
     );
     s.sync;
+    (root +/+ "loaders/realizations.scd").load;
     (root +/+ "loaders/composition.scd").load;
     (root +/+ "loaders/players.scd").load;
     (root +/+ "loaders/score.scd").load;
