@@ -1,9 +1,13 @@
+
 (
-var project;
+var project, players;
+
 project = topEnvironment[\inDreams];
-project[\score][\full] = Ppar([
-  project[\player][\melody],
-  project[\player][\bass],
-  project[\player][\harmony],
-], 1);
+
+players =
+    project[\score][\partOrder].collect { |partName|
+        project[\player][partName]
+    };
+
+project[\score][\full] = Ppar(players, 1);
 )

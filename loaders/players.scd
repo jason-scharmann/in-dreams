@@ -1,19 +1,28 @@
 (
 var project, ensemble;
-
 project = topEnvironment[\inDreams];
-ensemble = project[\ensembles][project[\ensemble]];
+ensemble = project[\ensembles][ project[\ensemble] ];
 
-[\melody, \bass, \harmony].do { |partName|
-    var source, realize;
+project[\score][\partOrder].do { |partName|
+  var source;
+  var realizationName;
+  var realize;
 
-    source =
-        project[\utils][\patterns][\part].(
-            project[partName]
-        );
+  source = project[\utils][\patterns][\part].(project[partName]);
+  realizationName = ensemble[partName];
 
-    realize = project[\realizations][ ensemble[partName]];
+  if(realizationName.isNil) {
+    Error(
+      "ensemble % has no realization for part %"
+      .format(
+        project[\ensemble],
+        partName
+      )
+    ).throw;
+  };
 
-    project[\player][partName] = source.collect(realize);
+  realize = project[\realizations][realizationName];
+
+  project[\player][partName] = source.collect(realize);
 };
 )

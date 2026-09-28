@@ -16,5 +16,11 @@ root = project[\paths][\root];
   (root +/+ file).load;
 };
 
+project[\score][\partOrder] = [
+    \melody,
+    \bass,
+    \harmony
+];
+
 project [\utils][\composition][\validateAll].();
 )
