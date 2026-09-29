@@ -23,10 +23,10 @@ project = (
   samples: (),
   samplers: (),
   realizations: (),
-  ensemble: \vsco,
+  ensemble: \shire,
   // ensemble: \chip,
   ensembles: (
-    vsco: (
+    shire: (
       melody: \vscoFlute,
       bass: \vscoCello,
       harmony: \vscoHarp
