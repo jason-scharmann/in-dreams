@@ -1,37 +1,45 @@
 (
 var project, root;
+var score, composition;
+
 project = topEnvironment[\inDreams];
 root = project[\paths][\root];
 
-project[\score][\partOrder] = [
-  \melody,
-  \bass,
-  \harmony
-];
+project[\score] = (
+  partOrder: [
+    \melody,
+    \bass,
+    \harmony
+  ],
 
-project[\score][\form] = [
-  \first,
-  \second
-];
+  form: [
+    \first,
+    \second
+  ],
 
-project[\score][\authoring] = (
-  melody: (
-    first: (root +/+ "melody/first.scd").load,
-    second: (root +/+ "melody/second.scd").load
+  authoring: (
+    melody: (
+      first: (root +/+ "melody/first.scd").load,
+      second: (root +/+ "melody/second.scd").load
+    ),
+
+    bass: (
+      first: (root +/+ "bass/first.scd").load,
+      second: (root +/+ "bass/second.scd").load
+    ),
+
+    harmony: (
+      first: (root +/+ "harmony/first.scd").load,
+      second: (root +/+ "harmony/second.scd").load
+    )
   ),
-  bass: (
-    first: (root +/+ "bass/first.scd").load,
-    second: (root +/+ "bass/second.scd").load
-  ),
-  harmony: (
-    first: (root +/+ "harmony/first.scd").load,
-    second: (root +/+ "harmony/second.scd").load
-  )
+  parts: ()
 );
 
-project[\score][\parts] = ();
+score = project[\score];
+composition = project[\utils][\composition];
 
-project[\utils][\composition][\validateAll].();
+composition[\validateAll].(score);
 
-project[\utils][\composition][\normalizeAll].();
+score[\parts] = composition[\normalizeAll].(score);
 )
