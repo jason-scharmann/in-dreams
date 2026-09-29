@@ -9,7 +9,7 @@ topEnvironment[\inDreams][\recording][\stop].();
 (
 var project;
 project = topEnvironment[\inDreams];
-project[\recording][\full].( "in-dreams-chip-full.wav");
+project[\recording][\full].( "in-dreams-shire-full.wav");
 )
 // Full Wet-Only Recording ------------
 (
@@ -36,5 +36,5 @@ project[\recording][\dry].(\bass, "in-dreams-cello-dry.wav");
 (
 var project;
 project = topEnvironment[\inDreams];
-project[\recording][\dry].(\harmony, "in-dreams-chip-comp-dry.wav");
+project[\recording][\dry].(\harmony, "in-dreams-harp-dry.wav");
 )
