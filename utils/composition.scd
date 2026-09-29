@@ -6,7 +6,6 @@ var normalizePart, normalizeAll;
 project = topEnvironment[\inDreams];
 duration = project[\utils][\duration];
 
-
 validatePhrase = {
   |partName, sectionName, phraseIndex, phrase|
 
@@ -140,7 +139,7 @@ normalizeAll = {
   project[\score][\partOrder].do { |partName|
     project[\score][\parts][partName] =
     normalizePart.(
-      project[partName],
+      project[\score][\authoring][partName],
       form
     );
   };
@@ -152,7 +151,7 @@ project[\utils][\composition] = (
     project[\score][\partOrder].do { |partName|
       validatePart.(
         partName,
-        project[partName]
+        project[\score][\authoring][partName]
       );
     };
 

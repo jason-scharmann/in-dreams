@@ -37,9 +37,6 @@ project = (
       harmony: \chipHarmony
     ),
   ),
-  melody: (),
-  bass: (),
-  harmony: (),
   player: (),
   score: (),
   buses: (),
