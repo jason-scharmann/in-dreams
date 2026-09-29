@@ -5,6 +5,13 @@ var recordPattern;
 
 project = topEnvironment[\inDreams];
 
+makeFilename = { |suffix|
+  "in-dreams-%-%.wav".format(
+    project[ensemble],
+    suffix
+  )
+}
+
 stopRecording = {
   var routine, stream, originalMix;
 
@@ -142,6 +149,12 @@ project[\recording] = (
       ).throw;
     };
 
+    filename = filename ?? {
+      makeFilename.(
+        "%-dry".format(playerName)
+      )
+    }
+
     recordPattern.(
       pattern,
       filename,
@@ -153,8 +166,12 @@ project[\recording] = (
   },
 
   full: {
-    |filename = "in-dreams-full.wav",
+    |filename,
     preRoll = 1.5, tail = 10, beats = 64|
+
+    filename = filename ?? {
+      makeFilename.("full")
+    };
 
     recordPattern.(
       project[\score][\full],
@@ -167,8 +184,12 @@ project[\recording] = (
   },
 
   wet: {
-    |filename = "in-dreams-reverb-wet.wav",
+    |filename,
     preRoll = 1.5, tail = 10, beats = 64|
+
+    filename = filename ?? {
+      makeFilename.("reverb-wet")
+    }
 
     var reverb;
 
