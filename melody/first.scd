@@ -2,10 +2,10 @@
 var opening, answer, cadence;
 
 opening = [
-  (midinote: 66, dur: 1),       // F#4
-  (midinote: 69, dur: 1),       // A4
-  (midinote: 66, dur: 1),       // F#4
-  (midinote: 64, dur: 1),       // E4
+  (midinote: 66, dur: 1, dynamic: \p),       // F#4
+  (midinote: 69, dur: 1, dynamic: \f),       // A4
+  (midinote: 66, dur: 1, dynamic: \p),       // F#4
+  (midinote: 64, dur: 1, dynamic: \f),       // E4
   (midinote: 62, dur: 2),       // D4
   (midinote: Rest(0), dur: 1),
   (midinote: 66, dur: 0.5),     // F#4
