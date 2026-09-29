@@ -24,7 +24,7 @@ project[\recording][\wet].( "in-dreams-reverb-wet.wav");
 (
 var project;
 project = topEnvironment[\inDreams];
-project[\recording][\dry].( \melody, "in-dreams-flute-dry.wav");
+project[\recording][\dry].( \melody, "in-dreams-chip-lead-dry.wav");
 )
 // Dry Cello --------------------------
 (
