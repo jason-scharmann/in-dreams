@@ -7,34 +7,68 @@ topEnvironment[\inDreams][\recording][\stop].();
 ///////////////////////////////////////////////////////////////////////////////
 // COMPLETE ---------------------------
 (
-var project;
+var project, ensemble;
 project = topEnvironment[\inDreams];
-project[\recording][\full].( "in-dreams-shire-full.wav");
+ensemble = project[\ensemble].asString;
+
+project[\recording][\full].(
+  "in-dreams-%-full.wav".format(ensemble)
+);
 )
 // Full Wet-Only Recording ------------
 (
-var project;
+var project, ensemble;
+ensemble = project[\ensemble].asString;
 project = topEnvironment[\inDreams];
-project[\recording][\wet].( "in-dreams-shire-reverb-wet.wav");
+
+project[\recording][\wet].(
+  "in-dreams-%-reverb-wet.wav".format(ensemble)
+);
 )
 ///////////////////////////////////////////////////////////////////////////////
 //  Individual Dry Tracks
 ///////////////////////////////////////////////////////////////////////////////
 // Dry Flute --------------------------
 (
-var project;
+var project, ensemble, part;
 project = topEnvironment[\inDreams];
-project[\recording][\dry].( \melody, "in-dreams-flute-dry.wav");
+ensemble = project[\ensemble].asString;
+part = \melody;
+
+project[\recording][\dry].(
+  part,
+  "in-dreams-%-%-dry.wav".format(
+    ensemble,
+    part.asString
+));
 )
 // Dry Cello --------------------------
 (
-var project;
+var project, ensemble;
 project = topEnvironment[\inDreams];
-project[\recording][\dry].(\bass, "in-dreams-cello-dry.wav");
+ensemble = project[\ensemble].asString;
+part = \bass;
+
+project[\recording][\dry].(
+  part,
+  "in-dreams-%-%-dry.wav".format(
+    ensemble,
+    part.asString
+  )
+);
 )
 // Dry Harp ---------------------------
 (
-var project;
+var project, ensemble;
 project = topEnvironment[\inDreams];
-project[\recording][\dry].(\harmony, "in-dreams-harp-dry.wav");
+ensemble = project[\ensemble].asString;
+part = \harmony;
+
+project[\recording][\dry].(
+  part,
+  "in-dreams-harp-dry.wav".format(
+    ensemble,
+    part.asString
+  )
+);
 )
