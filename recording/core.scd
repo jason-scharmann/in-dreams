@@ -1,16 +1,14 @@
 (
-var project;
-var stopRecording;
-var recordPattern;
+var project, stopRecording, recordPattern, makeFilename;
 
 project = topEnvironment[\inDreams];
 
 makeFilename = { |suffix|
   "in-dreams-%-%.wav".format(
-    project[ensemble],
+    project[\ensemble],
     suffix
   )
-}
+};
 
 stopRecording = {
   var routine, stream, originalMix;
@@ -135,8 +133,8 @@ project[\recording] = (
   pattern: recordPattern,
 
   dry: {
-    |playerName, filename,
-    preRoll = 1.5, tail = 10, beats = 64|
+    |playerName, filename, preRoll = 1.5,
+     tail = 10, beats = 64|
 
     var pattern;
 
@@ -153,7 +151,7 @@ project[\recording] = (
       makeFilename.(
         "%-dry".format(playerName)
       )
-    }
+    };
 
     recordPattern.(
       pattern,
@@ -165,9 +163,7 @@ project[\recording] = (
     );
   },
 
-  full: {
-    |filename,
-    preRoll = 1.5, tail = 10, beats = 64|
+  full: { |filename, preRoll = 1.5, tail = 10, beats = 64|
 
     filename = filename ?? {
       makeFilename.("full")
@@ -183,15 +179,12 @@ project[\recording] = (
     );
   },
 
-  wet: {
-    |filename,
-    preRoll = 1.5, tail = 10, beats = 64|
+  wet: { |filename, preRoll = 1.5, tail = 10, beats = 64|
+    var reverb;
 
     filename = filename ?? {
       makeFilename.("reverb-wet")
-    }
-
-    var reverb;
+    };
 
     reverb = project[\effects][\reverb];
 
