@@ -9,13 +9,13 @@ topEnvironment[\inDreams][\recording][\stop].();
 (
 var project;
 project = topEnvironment[\inDreams];
-project[\recording][\full].( "in-dreams-shire-full.wav");
+project[\recording][\full].( "in-dreams-chip-full.wav");
 )
 // Full Wet-Only Recording ------------
 (
 var project;
 project = topEnvironment[\inDreams];
-project[\recording][\wet].( "in-dreams-reverb-wet.wav");
+project[\recording][\wet].( "in-dreams-shire-reverb-wet.wav");
 )
 ///////////////////////////////////////////////////////////////////////////////
 //  Individual Dry Tracks
@@ -36,5 +36,5 @@ project[\recording][\dry].(\bass, "in-dreams-cello-dry.wav");
 (
 var project;
 project = topEnvironment[\inDreams];
-project[\recording][\dry].(\harmony, "in-dreams-harp-dry.wav");
+project[\recording][\dry].(\harmony, "in-dreams-chip-comp-dry.wav");
 )
