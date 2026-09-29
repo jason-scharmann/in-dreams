@@ -46,7 +46,7 @@ cadence = [
 [
   opening,
   answer,
-  opening,
+  return,
   cadence
 ];
 )
