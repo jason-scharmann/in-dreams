@@ -24,7 +24,6 @@ project = (
   samplers: (),
   realizations: (),
   ensemble: \shire,
-  // ensemble: \chip,
   ensembles: (
     shire: (
       melody: \vscoFlute,
