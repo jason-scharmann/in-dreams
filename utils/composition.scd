@@ -2,6 +2,7 @@
 { |duration|
   var validatePhrase, validateSection, validatePart;
   var normalizePart, normalizeAll;
+  var resolveAddress;
 
   validatePhrase = {
     |partName, sectionName, phraseIndex, phrase|
@@ -141,6 +142,97 @@
   };
 
 
+  resolveAddress = {
+    |score, partName, address|
+
+    var part, form;
+    var sectionName, sectionIndex, section;
+    var phraseIndex, phrase, phraseBeats;
+    var beat, absoluteBeat;
+
+    part = score[\authoring][partName];
+
+    if(part.isNil) {
+      Error(
+        "unknown part: %"
+        .format(partName)
+      ).throw;
+    };
+
+    form = score[\form];
+    sectionName = address[\section];
+    phraseIndex = address[\phrase];
+    beat = address[\beat];
+
+    sectionIndex = form.indexOf(sectionName);
+
+    if(sectionIndex.isNil) {
+      Error(
+        "unknown section: %"
+        .format(sectionName)
+      ).throw;
+    };
+
+    section = part[sectionName];
+
+    if(
+      phraseIndex.isNil
+      or: { phraseIndex < 0 }
+      or: { phraseIndex >= section.size }
+    ) {
+      Error(
+        "invalid phrase index % for %/%"
+        .format(
+          phraseIndex,
+          partName,
+          sectionName
+        )
+      ).throw;
+    };
+
+    phrase = section[phraseIndex];
+    phraseBeats = duration[\totalBeats].(phrase);
+
+    if(
+      beat.isNil
+      or: { beat < 0 }
+      or: { beat > phraseBeats }
+    ) {
+      Error(
+        "invalid beat % for %/% phrase %"
+        .format(
+          beat,
+          partName,
+          sectionName,
+          phraseIndex + 1
+        )
+      ).throw;
+    };
+
+    absoluteBeat = 0;
+
+    sectionIndex.do { |index|
+      part[form[index]].do { |precedingPhrase|
+        absoluteBeat =
+        absoluteBeat
+        + duration[\totalBeats].(
+          precedingPhrase
+        );
+      };
+    };
+
+    phraseIndex.do { |index|
+      absoluteBeat =
+      absoluteBeat
+      + duration[\totalBeats].(
+        section[index]
+      );
+    };
+
+    absoluteBeat + beat
+  };
+
+
   (
     validateAll: { |score|
 
@@ -156,7 +248,9 @@
       .postln;
     },
 
-    normalizeAll: normalizeAll
+    normalizeAll: normalizeAll,
+
+    resolveAddress: resolveAddress
   )
 }
 )
