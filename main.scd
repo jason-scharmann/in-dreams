@@ -158,6 +158,7 @@ s.waitForBoot {
     (root +/+ "loaders/composition.scd").load;
     (root +/+ "loaders/players.scd").load;
     (root +/+ "loaders/score.scd").load;
+    (root +/+ "ensemble/switch.scd").load;
     (root +/+ "loaders/recording.scd").load;
     "in-dreams ready".postln;
   }).play(AppClock);
