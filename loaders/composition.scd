@@ -33,6 +33,9 @@ project[\score] = (
       second: (root +/+ "harmony/second.scd").load
     )
   ),
+
+  gestures: [],
+
   parts: ()
 );
 
